@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Built by Barq</title>
+<meta name="description" content="AI-engineered products, Shopify apps and internal tools designed, built and shipped by Barq Dev.">
+<link rel="canonical" href="https://built.barq.dev/">
+<meta property="og:title" content="Built by Barq: products we designed, built and shipped">
+<meta property="og:description" content="Live SaaS products, Shopify apps and the internal tools we run Barq Dev on.">
+<meta property="og:url" content="https://built.barq.dev/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="assets/favicon-dark.ico" sizes="256x256">
+<link rel="icon" href="assets/favicon-dark.ico" media="(prefers-color-scheme: light)">
+<link rel="icon" href="assets/favicon-light.ico" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+  /* Apply a saved theme before first paint to avoid a flash. */
+  try { const t = localStorage.getItem("barq-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+  :root {
+    --bg: #f5f4ef;
+    --surface: #ffffff;
+    --surface-2: #eeece5;
+    --text: #121417;
+    --muted: #5c5f66;
+    --line: #e3e0d7;
+    --line-strong: #cfcbc0;
+    --accent: #ff6500;
+    --accent-soft: rgba(255, 101, 0, .16);
+    --accent-ink: #121417;
+    --live: #157347;  --live-bg: #e2f2e9;
+    --shop: #3f7d14;  --shop-bg: #eaf3dc;
+    --soon: #8a5a00;  --soon-bg: #fbefd2;
+    --int: #4b4f9e;   --int-bg: #e8e9f7;
+    --shadow: 0 1px 2px rgba(18,20,23,.04), 0 12px 32px -16px rgba(18,20,23,.16);
+    --shadow-hover: 0 2px 4px rgba(18,20,23,.05), 0 22px 44px -18px rgba(18,20,23,.24);
+    --hero-bg: #ecebe4;
+    --hero-text: #121417;
+    --hero-muted: #55585f;
+    --hl: #c74e00;
+    --glass: rgba(18,20,23,.035);
+    --glass-hover: rgba(18,20,23,.07);
+    --glass-line: rgba(18,20,23,.11);
+    --dot: rgba(18,20,23,.13);
+    --glow: rgba(255,101,0,.26);
+    --radius: 18px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b0d10; --surface: #14171c; --surface-2: #1b1f26; --text: #eceae3; --muted: #9a9ea7;
+      --line: #242931; --line-strong: #343a44; --accent: #ff6500; --accent-soft: rgba(255,101,0,.16);
+      --live: #5fd39a; --live-bg: #10281c; --shop: #a6dc6b; --shop-bg: #1c2a10;
+      --soon: #f3c35a; --soon-bg: #2c230f; --int: #a5a9f5; --int-bg: #1d1f3a;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 32px -16px rgba(0,0,0,.7);
+      --shadow-hover: 0 2px 4px rgba(0,0,0,.4), 0 24px 48px -18px rgba(0,0,0,.85);
+      --hero-bg: #07080a; --hero-text: #f1efe8; --hero-muted: #a3a7af; --hl: #ff7a22; --glass: rgba(255,255,255,.06); --glass-hover: rgba(255,255,255,.12); --glass-line: rgba(255,255,255,.12); --dot: rgba(255,255,255,.09); --glow: rgba(255,101,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b0d10; --surface: #14171c; --surface-2: #1b1f26; --text: #eceae3; --muted: #9a9ea7;
+    --line: #242931; --line-strong: #343a44; --accent: #ff6500; --accent-soft: rgba(255,101,0,.16);
+    --live: #5fd39a; --live-bg: #10281c; --shop: #a6dc6b; --shop-bg: #1c2a10;
+    --soon: #f3c35a; --soon-bg: #2c230f; --int: #a5a9f5; --int-bg: #1d1f3a;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 32px -16px rgba(0,0,0,.7);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,.4), 0 24px 48px -18px rgba(0,0,0,.85);
+    --hero-bg: #07080a; --hero-text: #f1efe8; --hero-muted: #a3a7af; --hl: #ff7a22; --glass: rgba(255,255,255,.06); --glass-hover: rgba(255,255,255,.12); --glass-line: rgba(255,255,255,.12); --dot: rgba(255,255,255,.09); --glow: rgba(255,101,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 16px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden; overflow-x: clip;
+    transition: background-color .3s, color .3s;
+  }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+  /* ───────── Hero (always dark) ───────── */
+  .hero {
+    position: relative; isolation: isolate; overflow: hidden; overflow: clip;
+    background: var(--hero-bg); color: var(--hero-text); border-bottom: 1px solid var(--line);
+    transition: background-color .3s, color .3s;
+  }
+  .hero::before { /* dotted grid */
+    content: ""; position: absolute; inset: 0; z-index: -2;
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 40%, transparent 100%);
+  }
+  .hero::after { /* glow */
+    content: ""; position: absolute; z-index: -1; width: 720px; height: 720px; right: -220px; top: -320px;
+    background: radial-gradient(circle, var(--glow), transparent 62%);
+    filter: blur(10px); animation: drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes drift { to { transform: translate(-80px, 60px) scale(1.08); } }
+
+  .topbar { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--hero-text); }
+  .brand .by { font: 500 15px/1 "Space Grotesk", sans-serif; color: var(--hero-muted); padding-bottom: 3px; }
+  .brand .logo { height: 34px; width: auto; display: block; }
+  .topnav { display: flex; align-items: center; gap: 4px; }
+  .topnav a.link { text-decoration: none; color: var(--hero-muted); font-size: 14px; padding: 8px 12px; border-radius: 8px; transition: color .15s; }
+  .topnav a.link:hover { color: var(--hero-text); }
+  .icon-btn {
+    width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; cursor: pointer;
+    background: var(--glass); border: 1px solid var(--glass-line); color: var(--hero-text);
+    transition: background .15s;
+  }
+  .icon-btn:hover { background: var(--glass-hover); }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .icon-btn .moon { display: none; }
+  :root[data-theme="dark"] .icon-btn .sun { display: none; }
+  :root[data-theme="dark"] .icon-btn .moon { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-btn .sun { display: none; }
+    :root:not([data-theme="light"]) .icon-btn .moon { display: block; }
+  }
+  @media (max-width: 760px) { .topnav a.link { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; white-space: nowrap;
+    font: 600 15px/1 Inter, sans-serif; padding: 14px 20px; border-radius: 12px; border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .15s, border-color .15s, opacity .15s;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn svg { width: 16px; height: 16px; transition: transform .2s ease; }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn-accent { background: var(--accent); color: var(--accent-ink); }
+  .btn-accent:hover { background: #ff7a22; }
+  .btn-ghost { background: var(--glass); border-color: var(--glass-line); color: var(--hero-text); }
+  .btn-ghost:hover { background: var(--glass-hover); }
+  .btn-sm { padding: 10px 14px; font-size: 14px; border-radius: 10px; }
+
+  .hero-body { padding: 56px 0 52px; }
+  @media (min-width: 720px) { .hero-body { padding: 88px 0 72px; } }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 8px; border-radius: 999px;
+    font-size: 13px; font-weight: 500; color: var(--hero-text);
+    background: var(--glass); border: 1px solid var(--glass-line);
+  }
+  .pill i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #5fd39a; }
+  .pill i::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #5fd39a; opacity: 0; animation: ping 2s ease-out infinite; }
+  @keyframes ping { 0% { transform: scale(.6); opacity: .8; } 100% { transform: scale(1.6); opacity: 0; } }
+  h1 {
+    font: 700 clamp(40px, 8.4vw, 84px)/.98 "Space Grotesk", sans-serif; letter-spacing: -.04em;
+    margin: 22px 0 22px; max-width: 14ch;
+  }
+  h1 .hl { color: var(--hl); position: relative; white-space: nowrap; }
+  h1 .hl svg { position: absolute; left: 0; right: 0; bottom: -.12em; width: 100%; height: .22em; }
+  h1 .hl path { stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 1.1s .5s cubic-bezier(.65,0,.35,1) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .lede { font-size: clamp(17px, 2.1vw, 20px); color: var(--hero-muted); max-width: 58ch; margin: 0; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  @media (max-width: 480px) { .hero-cta .btn { flex: 1 1 100%; } }
+
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 52px; }
+  @media (min-width: 820px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+  .stat {
+    position: relative; padding: 18px 18px 16px; border-radius: 16px; overflow: hidden;
+    background: var(--glass);
+    border: 1px solid var(--glass-line);
+  }
+  .stat b {
+    display: block; font: 700 clamp(34px, 5vw, 48px)/1 "Space Grotesk", sans-serif; letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums; color: var(--hero-text);
+  }
+  .stat b.tick { animation: tick .22s ease-out; }
+  @keyframes tick { 0% { transform: translateY(4px); opacity: .55; } 100% { transform: none; opacity: 1; } }
+  .stat b.done { color: var(--hl); transition: color .4s; }
+  .stat span { display: block; margin-top: 8px; font-size: 13.5px; color: var(--hero-muted); line-height: 1.35; }
+  .stat .bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--accent); transition: width .2s linear; }
+
+  /* ───────── Filter bar ───────── */
+  .filters {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: saturate(1.5) blur(14px); -webkit-backdrop-filter: saturate(1.5) blur(14px);
+    border-bottom: 1px solid transparent; transition: border-color .2s, box-shadow .2s;
+  }
+  .filters.stuck { border-bottom-color: var(--line); box-shadow: 0 8px 24px -20px rgba(0,0,0,.4); }
+  .filters .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; padding-top: 14px; padding-bottom: 12px; }
+  /* On phones a three-row sticky bar eats too much screen; let it scroll away (back-to-top button brings it back). */
+  @media (max-width: 640px) { .filters { position: relative; } .filters .wrap { padding-top: 18px; } }
+  .filter-row { display: flex; gap: 10px; align-items: center; }
+  .seg { display: inline-flex; background: var(--surface-2); border-radius: 12px; padding: 4px; flex: none; position: relative; }
+  .seg button {
+    position: relative; z-index: 1; font-weight: 600; font-size: 14px; color: var(--muted); background: transparent; border: 0;
+    padding: 9px 14px; border-radius: 9px; cursor: pointer; transition: color .15s; white-space: nowrap;
+  }
+  .seg button small { font-weight: 500; opacity: .65; margin-left: 5px; font-variant-numeric: tabular-nums; }
+  .seg button[aria-pressed="true"] { color: var(--text); }
+  .seg .thumb { position: absolute; z-index: 0; top: 4px; bottom: 4px; border-radius: 9px; background: var(--surface); box-shadow: var(--shadow); transition: left .25s cubic-bezier(.3,.7,.3,1), width .25s cubic-bezier(.3,.7,.3,1); }
+  .search {
+    flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; transition: border-color .15s, box-shadow .15s;
+  }
+  .search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .search svg { width: 17px; height: 17px; color: var(--muted); flex: none; }
+  .search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: 400 15px Inter, sans-serif; }
+  .search input::placeholder { color: var(--muted); }
+  .search kbd { font: 500 11px ui-monospace, Menlo, monospace; color: var(--muted); border: 1px solid var(--line); border-radius: 5px; padding: 2px 6px; }
+  @media (max-width: 640px) {
+    .filter-row { flex-direction: column; align-items: stretch; }
+    .seg { display: flex; }
+    .seg button { flex: 1; padding: 10px 6px; }
+    .search { flex: none; }
+    .search kbd { display: none; }
+  }
+  .chips-wrap { position: relative; }
+  .chips-wrap::after { content: ""; position: absolute; right: 0; top: 0; bottom: 2px; width: 40px; pointer-events: none; background: linear-gradient(90deg, transparent, var(--bg)); }
+  .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 0 40px 2px 0; scroll-snap-type: x proximity; }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: none; scroll-snap-align: start; font-weight: 500; font-size: 13px; color: var(--muted); background: var(--surface);
+    border: 1px solid var(--line); padding: 8px 12px; border-radius: 999px; cursor: pointer; transition: all .15s;
+  }
+  .chip small { opacity: .6; margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .chip:hover { color: var(--text); border-color: var(--line-strong); }
+  .chip[aria-pressed="true"] { background: var(--text); border-color: var(--text); color: var(--bg); }
+  .status-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); min-height: 22px; }
+  .clear { background: none; border: 0; padding: 2px 0; color: var(--text); font-weight: 600; font-size: 13px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .clear[hidden] { display: none; }
+
+  /* ───────── Groups & cards ───────── */
+  main { padding: 8px 0 96px; }
+  section.group { padding-top: 56px; scroll-margin-top: 150px; }
+  @media (max-width: 640px) { section.group { padding-top: 44px; scroll-margin-top: 0; } }
+  section.group[hidden] { display: none; }
+  .group-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  .group-head .num { font: 600 13px/1 ui-monospace, Menlo, monospace; color: var(--muted); letter-spacing: .04em; }
+  .group-head h2 { font: 700 clamp(26px, 3.6vw, 34px)/1.1 "Space Grotesk", sans-serif; letter-spacing: -.025em; margin: 8px 0 6px; }
+  .group-head p { margin: 0; color: var(--muted); font-size: 15.5px; max-width: 60ch; }
+  .group-head .count { flex: none; font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; font-variant-numeric: tabular-nums; }
+  @media (max-width: 560px) { .group-head .count { display: none; } }
+
+  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 700px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, 1fr); } .card.feature { grid-column: span 2; } }
+
+  .card {
+    position: relative; display: flex; flex-direction: column; gap: 16px; padding: 22px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+    transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s, border-color .25s;
+    opacity: 0; transform: translateY(14px);
+  }
+  .card.in { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s cubic-bezier(.2,.7,.3,1), box-shadow .25s, border-color .25s; }
+  .card::before { /* accent glow on hover */
+    content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; opacity: 0;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--c) 22%, transparent), transparent 55%);
+    transition: opacity .25s;
+  }
+  @media (hover: hover) {
+    .card.in:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: color-mix(in srgb, var(--c) 45%, var(--line)); }
+    .card:hover::before { opacity: 1; }
+  }
+  .card > * { position: relative; }
+  .card-top { display: flex; align-items: center; gap: 14px; }
+  .mark {
+    width: 46px; height: 46px; border-radius: 13px; flex: none; display: grid; place-items: center;
+    font: 700 17px/1 "Space Grotesk", sans-serif; color: #fff; letter-spacing: -.02em;
+    background: linear-gradient(140deg, color-mix(in srgb, var(--c) 82%, #fff), var(--c) 55%, color-mix(in srgb, var(--c) 70%, #000));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 6px 16px -8px var(--c);
+  }
+  .mark.has-logo { background: var(--surface); box-shadow: 0 0 0 1px var(--line), 0 6px 16px -10px rgba(0,0,0,.35); overflow: hidden; }
+  .mark.has-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .mark.has-logo[style] img { width: 64%; height: 64%; object-fit: contain; } /* transparent icon on its own tile */
+  .title { min-width: 0; flex: 1; }
+  .card h3 { font: 600 20px/1.2 "Space Grotesk", sans-serif; letter-spacing: -.015em; margin: 0 0 6px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font: 600 11.5px/1 Inter, sans-serif; letter-spacing: .01em; padding: 5px 9px; border-radius: 999px; white-space: nowrap; }
+  .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .badge.live { color: var(--live); background: var(--live-bg); }
+  .badge.shop { color: var(--shop); background: var(--shop-bg); }
+  .badge.soon { color: var(--soon); background: var(--soon-bg); }
+  .badge.int { color: var(--int); background: var(--int-bg); }
+  .what { margin: 0; color: var(--muted); font-size: 15px; }
+  .feature .what { font-size: 16.5px; max-width: 56ch; }
+  .sub { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .sub li { font-size: 12.5px; background: var(--surface-2); border-radius: 7px; padding: 5px 9px; }
+  .sub a { text-decoration: none; }
+  .sub a:hover { text-decoration: underline; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags button { font-size: 12px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; cursor: pointer; transition: all .15s; }
+  .tags button:hover { color: var(--text); border-color: var(--line-strong); }
+  .card-foot { margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--line); display: flex; flex-direction: column; gap: 12px; }
+  .stack { font: 12.5px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .links a {
+    display: inline-flex; align-items: center; gap: 6px; font: 600 13.5px/1 Inter, sans-serif; text-decoration: none;
+    padding: 10px 13px; border-radius: 10px; border: 1px solid var(--line); transition: all .15s;
+  }
+  .links a:hover { border-color: var(--line-strong); background: var(--surface-2); }
+  .links a.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .links a.primary:hover { opacity: .88; background: var(--text); }
+  .links svg { width: 14px; height: 14px; transition: transform .2s; }
+  .links a:hover svg { transform: translate(2px, -2px); }
+  .links .note { font-size: 13px; color: var(--muted); }
+  @media (max-width: 420px) { .links a { flex: 1 1 auto; justify-content: center; } }
+
+  .empty { padding: 72px 16px; text-align: center; color: var(--muted); }
+  .empty b { display: block; color: var(--text); font: 600 20px "Space Grotesk", sans-serif; margin-bottom: 6px; }
+
+  /* ───────── CTA & footer ───────── */
+  .cta {
+    position: relative; overflow: hidden; overflow: clip; isolation: isolate; margin-top: 88px; border-radius: 24px; padding: 40px 24px;
+    background: #0b0d10; color: #f1efe8; border: 1px solid var(--line); display: grid; gap: 22px; align-items: center;
+  }
+  .cta::after { content: ""; position: absolute; z-index: -1; width: 520px; height: 520px; left: -160px; bottom: -340px; background: radial-gradient(circle, rgba(255,101,0,.32), transparent 62%); }
+  @media (min-width: 760px) { .cta { grid-template-columns: 1fr auto; padding: 52px 56px; } }
+  .cta h2 { font: 700 clamp(26px, 3.6vw, 38px)/1.08 "Space Grotesk", sans-serif; letter-spacing: -.025em; margin: 0 0 10px; }
+  .cta p { margin: 0; color: #a3a7af; max-width: 52ch; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 calc(40px + env(safe-area-inset-bottom)); color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  .to-top {
+    position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 30; width: 44px; height: 44px; border-radius: 12px;
+    display: grid; place-items: center; cursor: pointer; background: var(--text); color: var(--bg); border: 0; box-shadow: var(--shadow-hover);
+    opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .2s, transform .2s;
+  }
+  .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+  .to-top svg { width: 18px; height: 18px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+    .card { opacity: 1; transform: none; }
+    h1 .hl path { stroke-dashoffset: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="https://barq.dev" aria-label="Built by Barq: Barq Dev home">
+        <span class="by">Built by</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 54" fill="none" class="logo" aria-hidden="true"><path fill="#FF6500" d="m17.13 36.417-.024.062.025-.025 11.793-13.551-8.189-.98.013-.05 5.262-11.128-4.006 4.383-8.113 9.244 8.553.829-.026.063"></path><path fill="currentColor" d="M30.757 27.65h-.05c-1.219 0-2.261.854-2.525 2.047-1.407 6.255-6.807 9.181-11.454 8.93-5.3-.277-9.935-4.622-10.412-9.822-.251-2.838.377-5.438 2.072-7.749 1.746-2.373 4.02-3.768 6.732-4.345a2.63 2.63 0 0 0 2.085-2.575c0-1.67-1.52-2.914-3.152-2.587-2.814.565-5.35 1.909-7.775 3.868l-.037-.038V3.624a2.637 2.637 0 1 0-5.275 0V6.7H.953l.013.012v8.591c0 4.107 0 8.214.025 12.32.063 8.227 5.79 14.783 13.953 16.115 7.599 1.243 15.272-3.392 17.797-10.852.239-.703.402-1.419.553-2.16a2.584 2.584 0 0 0-2.537-3.077M63.795 14.227a2.48 2.48 0 0 1 2.492 2.492v22.205a2.48 2.48 0 0 1-2.492 2.492c-1.329 0-2.492-1.107-2.492-2.492v-1.883c-2.381 3.046-5.98 4.929-10.023 4.929-7.254 0-13.123-6.313-13.123-14.12 0-7.809 5.87-14.177 13.123-14.177 4.043 0 7.642 1.938 10.023 4.984V16.72c0-1.384 1.163-2.492 2.492-2.492M52.277 37.263c5.04 0 9.192-4.209 9.192-9.414s-4.153-9.469-9.192-9.469-9.137 4.264-9.137 9.47c0 5.204 4.098 9.413 9.137 9.413m34.528-23.59c1.384 0 2.547 1.163 2.547 2.548 0 1.329-.941 2.38-2.16 2.547-4.485.498-8.361 4.042-8.361 9.801v10.41c0 1.385-1.163 2.492-2.492 2.492a2.48 2.48 0 0 1-2.492-2.491V16.719a2.48 2.48 0 0 1 2.492-2.492c1.33 0 2.492 1.108 2.492 2.492v1.218c2.104-2.492 5.039-4.208 7.974-4.264m30.597.554a2.48 2.48 0 0 1 2.492 2.492v34.443a2.48 2.48 0 0 1-2.492 2.492c-1.329 0-2.491-1.108-2.491-2.492v-14.12c-2.382 3.045-5.981 4.928-10.023 4.928-7.254 0-13.124-6.313-13.124-14.12 0-7.809 5.87-14.177 13.124-14.177 4.042 0 7.641 1.938 10.023 4.984V16.72c0-1.384 1.162-2.492 2.491-2.492m-11.518 23.036c5.04 0 9.193-4.209 9.193-9.414s-4.153-9.469-9.193-9.469c-5.039 0-9.136 4.264-9.136 9.47 0 5.204 4.097 9.413 9.136 9.413"></path></svg>
+      </a>
+      <nav class="topnav" aria-label="Sections">
+        <a class="link" href="#live">Live products</a>
+        <a class="link" href="#shopify">Shopify apps</a>
+        <a class="link" href="#internal">Internal tools</a>
+        <button class="icon-btn" id="theme" type="button" aria-label="Toggle dark mode">
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <div class="hero-body">
+      <span class="pill"><i></i>Barq Dev · Product portfolio</span>
+      <h1>Products we <span class="hl">engineered<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 15 C 80 4, 200 2, 297 10" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span>, not just pitched.</h1>
+      <p class="lede">AI apps with real users, Shopify apps on the App Store, and the internal tools we run our company on. We designed, built and run every one of them, and the same team builds for clients.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="#products">Explore products
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn-ghost" href="https://barq.dev">Work with us</a>
+      </div>
+      <div class="stats" id="stats" aria-label="Portfolio at a glance"></div>
+    </div>
+  </div>
+</header>
+
+<div class="filters" id="filters" role="region" aria-label="Filter products">
+  <div class="wrap">
+    <div class="filter-row">
+      <div class="seg" role="group" aria-label="Audience" id="seg"><span class="thumb" id="thumb"></span></div>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="sr">Search products</span>
+        <input id="q" type="search" placeholder="Search products, tags or tech…" autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+    </div>
+    <div class="chips-wrap"><div class="chips" role="group" aria-label="Tags" id="chips"></div></div>
+    <div class="status-line"><span id="result" aria-live="polite"></span><button class="clear" id="clear" type="button" hidden>Clear filters</button></div>
+  </div>
+</div>
+
+<main class="wrap" id="products">
+  <div id="groups"></div>
+  <div class="empty" id="empty" hidden><b>No products match</b>Try another tag or search term.</div>
+
+  <div class="cta">
+    <div>
+      <h2>Have a product in mind?</h2>
+      <p>We take ideas from first spec to launch: AI features, agents, SaaS and Shopify apps, built by the team behind everything on this page.</p>
+    </div>
+    <a class="btn btn-accent" href="https://barq.dev">Talk to Barq Dev
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Barq Dev</span>
+    <span><a href="https://barq.dev">barq.dev</a> · <a href="https://apps.shopify.com/partners/barq4" target="_blank" rel="noopener">Shopify Partner profile</a></span>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+/*
+  ─────────────────────────────────────────────────────────────
+  PRODUCT DATA. Edit this list to add or update a product.
+  audience: "external" (public / client-facing) or "internal"
+  group:    "live" | "shopify" | "internal" | "foundations"
+  status:   "live" | "listed" | "soon" | "internal"
+  feature:  true → wide card on desktop
+  links:    [{ label, href, primary? }]
+  ─────────────────────────────────────────────────────────────
+*/
+const PRODUCTS = [
+  // ── Live products ──────────────────────────────────────────
+  {
+    name: "TalkAI", logo: "assets/logos/talkai.png", group: "live", audience: "external", status: "live", color: "#7c4dff", feature: true,
+    what: "Chat with AI characters by text or voice, start group chats with several characters at once, and create your own.",
+    tags: ["AI", "Conversational AI", "Consumer"],
+    stack: "TypeScript · LLMs · Voice",
+    links: [{ label: "Visit talkai.chat", href: "https://talkai.chat/", primary: true }]
+  },
+  {
+    name: "Barq Meet", logo: "assets/logos/barq-meet.png", group: "live", audience: "external", status: "live", color: "#1f8a70",
+    what: "Free Google Calendar scheduling: booking pages, conflict checks, buffers and limits, with Google Meet links created for you.",
+    tags: ["Productivity", "Scheduling", "SaaS"],
+    stack: "TypeScript · Google Calendar API",
+    links: [{ label: "Visit meet.barq.dev", href: "https://meet.barq.dev/", primary: true }]
+  },
+  {
+    name: "Social360", logo: "assets/logos/social360.svg", group: "live", audience: "external", status: "live", color: "#e4572e",
+    what: "Write one post and publish it to YouTube, TikTok, Instagram, Facebook, LinkedIn, X and WhatsApp, reshaped for each platform.",
+    tags: ["Marketing", "Automation", "SaaS"],
+    stack: "Python · Social platform APIs",
+    links: [{ label: "Visit social360.site", href: "https://social360.site/", primary: true }]
+  },
+  {
+    name: "Free Online Toolset", group: "live", audience: "external", status: "live", color: "#2d6cdf",
+    what: "A suite of browser-first micro products that make developers and teams faster. Most run entirely in the browser.",
+    tags: ["Developer Tools", "Productivity", "AI"],
+    sub: [
+      { label: "JSON Formatter", href: "https://json-formatter.freeonlinetoolset.com/" },
+      { label: "Word Counter" }, { label: "Image Compressor" }, { label: "Image Converter" },
+      { label: "QR Generator" }, { label: "Audio Trimmer" }, { label: "Text Diff" },
+      { label: "ATS workspace" }, { label: "AI LMS" }, { label: "Doc AI" }
+    ],
+    links: [{ label: "Visit freeonlinetoolset.com", href: "https://freeonlinetoolset.com/", primary: true }]
+  },
+  {
+    name: "Video Forge", logo: "assets/logos/video-forge.svg", group: "live", audience: "external", status: "live", color: "#c2185b",
+    what: "Desktop video converter for macOS and Windows. Converts locally and privately, with presets for WhatsApp, Reels, YouTube and more. $5 one-time.",
+    tags: ["Media", "Desktop", "Privacy"],
+    stack: "TypeScript · ffmpeg · macOS + Windows",
+    links: [{ label: "Visit Video Forge", href: "https://video-forge.barq.dev/", primary: true }]
+  },
+
+  // ── Shopify apps ───────────────────────────────────────────
+  {
+    name: "FoundVia", logo: "assets/logos/foundvia.png", group: "shopify", audience: "external", status: "listed", color: "#0f766e",
+    what: "Post-purchase attribution survey. Asks one optional “How did you hear about us?” question after checkout and reports the answers with order value.",
+    tags: ["Shopify", "Analytics", "Marketing"],
+    stack: "Checkout UI extensions · Node · Prisma",
+    links: [{ label: "Shopify App Store", href: "https://apps.shopify.com/foundvia", primary: true }]
+  },
+  {
+    name: "GiftUnlock", logo: "assets/logos/giftunlock.png", group: "shopify", audience: "external", status: "listed", color: "#d97706",
+    what: "Cart goal rewards: free gift with purchase, free-shipping goals and tiered discounts, with a cart progress bar that shows shoppers how close they are.",
+    tags: ["Shopify", "E-commerce", "Revenue"],
+    stack: "Django · React · Rust Shopify Function",
+    links: [
+      { label: "Shopify App Store", href: "https://apps.shopify.com/giftunlock-free-gift-tiers", primary: true },
+      { label: "Landing page", href: "https://giftunlock.site/" }
+    ]
+  },
+  {
+    name: "Keepsake", logo: "assets/logos/keepsake.svg", group: "shopify", audience: "external", status: "listed", color: "#9333ea",
+    what: "Paid product add-ons. Lets merchants charge for names, gift messages, gift wrap and other personalisation.",
+    tags: ["Shopify", "E-commerce", "Revenue"],
+    stack: "Django · React · Theme app extension",
+    links: [{ label: "Shopify App Store", href: "https://apps.shopify.com/keepsake-1", primary: true }]
+  },
+  {
+    name: "Prexit", logo: "assets/logos/prexit.svg", group: "shopify", audience: "external", status: "soon", color: "#0284c7",
+    what: "Exit feedback survey. Asks shoppers who are about to leave why they didn't buy, and ranks the reasons for the merchant.",
+    tags: ["Shopify", "Analytics", "Conversion"],
+    stack: "Django · React · Theme app embed",
+    note: "App Store listing coming soon"
+  },
+  {
+    name: "Sortup", logo: "assets/logos/sortup.png", group: "shopify", audience: "external", status: "soon", color: "#16a34a",
+    what: "Keeps products shoppers can buy at the top of each collection, moves sold-out items down, and puts them back when restocked.",
+    tags: ["Shopify", "E-commerce", "Automation"],
+    stack: "Django · React · Admin GraphQL",
+    note: "App Store listing coming soon"
+  },
+  {
+    name: "LimitEach", logo: "assets/logos/limiteach.png", group: "shopify", audience: "external", status: "soon", color: "#dc2626",
+    what: "Fair purchase limits. Spots repeat buyers and households from past orders and caps quantities at checkout to stop hoarding and resellers.",
+    tags: ["Shopify", "E-commerce", "Fraud Prevention"],
+    stack: "Django · React · Rust cart validation",
+    note: "App Store listing coming soon"
+  },
+
+  // ── Internal tools ─────────────────────────────────────────
+  {
+    name: "Barq Time", logo: "assets/logos/barq-time.svg", logoBg: "#14171c", group: "internal", audience: "internal", status: "internal", color: "#475569",
+    what: "Our time-tracking app. Google sign-in, fast HTMX timesheets and Slack reminders so nobody forgets to log hours.",
+    tags: ["Productivity", "Operations"],
+    stack: "Django 5.2 · HTMX · Google OAuth · Slack"
+  },
+  {
+    name: "Barq ATS", group: "internal", audience: "internal", status: "internal", color: "#475569",
+    what: "Our recruitment workspace: candidate applications, pipeline stages and hiring decisions in one place.",
+    tags: ["Hiring", "Operations"],
+    stack: "Django · HTMX"
+  },
+  {
+    name: "MeetBarq Outreach", group: "internal", audience: "internal", status: "internal", color: "#475569",
+    what: "Outreach platform with prospect enrichment, AI-drafted emails and campaign management.",
+    tags: ["Sales", "AI", "Automation"],
+    stack: "React · Django · LLMs"
+  },
+  {
+    name: "ShopiQualify", group: "internal", audience: "internal", status: "internal", color: "#475569",
+    what: "Outreach CRM for our Shopify apps: 4,000+ enriched stores, multi-mailbox sending with bounce protection, and email and LinkedIn pipelines.",
+    tags: ["Sales", "Shopify", "Automation"],
+    stack: "Django · HTMX · SMTP/IMAP"
+  },
+  {
+    name: "AI Code Review", group: "internal", audience: "internal", status: "internal", color: "#475569",
+    what: "Automated first-pass reviews on our pull requests before a human reviewer looks.",
+    tags: ["Developer Tools", "AI"],
+    stack: "Python · LLMs"
+  },
+
+  // ── Engineering foundations ────────────────────────────────
+  {
+    name: "Shopify App Starter", group: "foundations", audience: "internal", status: "internal", color: "#334155", feature: true,
+    what: "The base behind five of our six Shopify apps, hardened by two App Store launches. Install, auth, webhooks, privacy and billing work on day one, so each new app starts at its own features.",
+    sub: [
+      { label: "Session tokens + token exchange" }, { label: "Encrypted, auto-refreshing tokens" },
+      { label: "GraphQL client with throttle & retry" }, { label: "HMAC-checked, de-duplicated webhooks" },
+      { label: "Privacy webhooks encrypted in queue" }, { label: "Billing that fails closed" },
+      { label: "Rust Shopify Functions" }, { label: "Image per commit, backup & rollback" }
+    ],
+    tags: ["Shopify", "Developer Tools", "Security"],
+    stack: "Django 5.2 · DRF · Celery · React 18 · Polaris · Rust"
+  },
+  {
+    name: "Django REST Starter", group: "foundations", audience: "internal", status: "internal", color: "#334155",
+    what: "Our standard backend for client APIs: dev, stage, prod and test environments in Docker, one Makefile to run them, background jobs, and HTTPS from day one.",
+    sub: [
+      { label: "Celery + beat, Flower" }, { label: "Postgres + Redis" }, { label: "Swagger API docs" },
+      { label: "Live settings (Constance)" }, { label: "S3 media" }, { label: "Sentry" },
+      { label: "Nginx + Let's Encrypt" }, { label: "Hash-pinned dependencies" },
+      { label: "black, isort, flake8 pre-commit" }, { label: "pytest + factory_boy" }
+    ],
+    tags: ["Developer Tools", "Security"],
+    stack: "Django 5.2 · DRF 3.16 · Celery · Postgres · Docker"
+  },
+  {
+    name: "Next.js Starter", group: "foundations", audience: "internal", status: "internal", color: "#334155",
+    what: "Our front-end starting point for marketing sites and web apps.",
+    tags: ["Developer Tools"],
+    stack: "Next.js · JavaScript"
+  },
+  {
+    name: "Monitoring Stack", group: "foundations", audience: "internal", status: "internal", color: "#334155",
+    what: "Grafana monitoring and dashboards for the services we run.",
+    tags: ["Developer Tools", "Operations"],
+    stack: "Grafana"
+  }
+];
+
+const GROUPS = [
+  { id: "live", title: "Live products", blurb: "SaaS and consumer products in production with real users." },
+  { id: "shopify", title: "Shopify apps", blurb: "Apps we build and publish as BARQ DEV LLC on the Shopify App Store." },
+  { id: "internal", title: "Internal tools", blurb: "Software we built to run Barq Dev. They aren't public, but we can walk you through any of them." },
+  { id: "foundations", title: "Engineering foundations", blurb: "The starter kits our products are built on. Each new project starts with auth, background jobs, deploys and security already done, which is how we ship fast." }
+];
+
+const STATUS = {
+  live: ["live", "Live"],
+  listed: ["shop", "On Shopify App Store"],
+  soon: ["soon", "Coming soon"],
+  internal: ["int", "Internal"]
+};
+
+const ARROW = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = id => document.getElementById(id);
+
+const state = { audience: "all", tag: null, q: "" };
+
+const initials = name => name.split(/[\s+]+/).filter(Boolean).map(w => w[0]).join("").slice(0, 2).toUpperCase();
+
+function card(p) {
+  const [cls, label] = STATUS[p.status];
+  const sub = p.sub ? `<ul class="sub">${p.sub.map(s => `<li>${s.href ? `<a href="${esc(s.href)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : esc(s.label)}</li>`).join("")}</ul>` : "";
+  const links = (p.links || []).map(l =>
+    `<a class="${l.primary ? "primary" : ""}" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)} ${ARROW}</a>`).join("");
+  const note = p.note ? `<span class="note">${esc(p.note)}</span>`
+    : (p.status === "internal" ? `<a href="https://barq.dev">Request a walkthrough ${ARROW}</a>` : "");
+  return `<article class="card${p.feature ? " feature" : ""}" style="--c:${esc(p.color)}">
+    <div class="card-top">
+      ${p.logo
+        ? `<div class="mark has-logo" data-initials="${esc(initials(p.name))}"${p.logoBg ? ` style="background:${esc(p.logoBg)}"` : ""}><img src="${esc(p.logo)}" alt="${esc(p.name)} logo" width="46" height="46" loading="lazy" decoding="async"></div>`
+        : `<div class="mark" aria-hidden="true">${esc(initials(p.name))}</div>`}
+      <div class="title"><h3>${esc(p.name)}</h3><span class="badge ${cls}">${label}</span></div>
+    </div>
+    <p class="what">${esc(p.what)}</p>
+    ${sub}
+    <div class="tags">${p.tags.map(t => `<button type="button" data-tag="${esc(t)}" aria-label="Filter by ${esc(t)}">${esc(t)}</button>`).join("")}</div>
+    <div class="card-foot">
+      ${p.stack ? `<div class="stack">${esc(p.stack)}</div>` : ""}
+      <div class="links">${links}${note}</div>
+    </div>
+  </article>`;
+}
+
+function matches(p) {
+  if (state.audience !== "all" && p.audience !== state.audience) return false;
+  if (state.tag && !p.tags.includes(state.tag)) return false;
+  if (state.q) {
+    const hay = [p.name, p.what, p.stack || "", ...p.tags, ...(p.sub || []).map(s => s.label)].join(" ").toLowerCase();
+    if (!state.q.split(/\s+/).every(w => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+/* Cards fade up as they scroll into view. */
+const io = "IntersectionObserver" in window && !reduceMotion
+  ? new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -40px 0px" })
+  : null;
+
+function render() {
+  let total = 0, n = 0;
+  $("groups").innerHTML = GROUPS.map(g => {
+    const all = PRODUCTS.filter(p => p.group === g.id);
+    const items = all.filter(matches);
+    total += items.length;
+    if (all.length) n++;
+    return `<section class="group" id="${g.id}" ${items.length ? "" : "hidden"} aria-labelledby="h-${g.id}">
+      <div class="group-head">
+        <div><span class="num">0${n} / ${g.title.toUpperCase()}</span><h2 id="h-${g.id}">${g.title}</h2><p>${g.blurb}</p></div>
+        <span class="count">${items.length} ${items.length === 1 ? "product" : "products"}</span>
+      </div>
+      <div class="grid">${items.map(card).join("")}</div>
+    </section>`;
+  }).join("");
+
+  // Stagger the reveal within each grid.
+  document.querySelectorAll(".grid").forEach(grid => {
+    [...grid.children].forEach((c, i) => {
+      c.style.transitionDelay = io ? `${Math.min(i, 5) * 70}ms` : "0ms";
+      if (io) io.observe(c); else c.classList.add("in");
+    });
+  });
+
+  $("empty").hidden = total > 0;
+  const filtered = state.audience !== "all" || state.tag || state.q;
+  $("result").textContent = filtered ? `Showing ${total} of ${PRODUCTS.length} products` : `${PRODUCTS.length} products`;
+  $("clear").hidden = !filtered;
+
+  document.querySelectorAll("#seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === state.audience)));
+  document.querySelectorAll("#chips button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === state.tag)));
+  moveThumb();
+}
+
+function moveThumb() {
+  const active = document.querySelector('#seg button[aria-pressed="true"]');
+  if (!active) return;
+  $("thumb").style.left = active.offsetLeft + "px";
+  $("thumb").style.width = active.offsetWidth + "px";
+}
+
+/* Stats count up one at a time when they come into view. */
+function countUp(el, target, bar) {
+  if (reduceMotion) { el.textContent = target; el.classList.add("done"); bar.style.width = "100%"; return; }
+  let n = 0;
+  const step = Math.max(90, Math.min(220, 1400 / target)); // ms per +1
+  el.textContent = "0";
+  const t = setInterval(() => {
+    n++;
+    el.textContent = n;
+    el.classList.remove("tick"); void el.offsetWidth; el.classList.add("tick");
+    bar.style.width = (n / target * 100) + "%";
+    if (n >= target) { clearInterval(t); el.classList.add("done"); }
+  }, step);
+}
+
+function setupStats() {
+  const live = PRODUCTS.filter(p => p.group === "live").length;
+  const shop = PRODUCTS.filter(p => p.group === "shopify");
+  const listed = shop.filter(p => p.status === "listed").length;
+  const internal = PRODUCTS.filter(p => p.group === "internal").length;
+  const ai = PRODUCTS.filter(p => p.tags.includes("AI") || p.tags.includes("Conversational AI")).length;
+  const stats = [
+    [live, "Live products"],
+    [shop.length, `Shopify apps · ${listed} on the App Store`],
+    [internal, "Internal tools"],
+    [ai, "AI-powered builds"]
+  ];
+  $("stats").innerHTML = stats.map(([n, l]) =>
+    `<div class="stat"><b data-target="${n}" aria-label="${n}">0</b><span>${l}</span><i class="bar"></i></div>`).join("");
+
+  const start = () => document.querySelectorAll("#stats .stat").forEach(s => countUp(s.querySelector("b"), +s.querySelector("b").dataset.target, s.querySelector(".bar")));
+  if ("IntersectionObserver" in window) {
+    const o = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { o.disconnect(); setTimeout(start, 350); } }, { threshold: .4 });
+    o.observe($("stats"));
+  } else start();
+}
+
+function setup() {
+  const count = a => PRODUCTS.filter(p => a === "all" || p.audience === a).length;
+  $("seg").insertAdjacentHTML("beforeend", [["all", "All"], ["external", "External"], ["internal", "Internal"]]
+    .map(([v, l]) => `<button type="button" data-v="${v}">${l}<small>${count(v)}</small></button>`).join(""));
+
+  const tagCounts = {};
+  PRODUCTS.forEach(p => p.tags.forEach(t => tagCounts[t] = (tagCounts[t] || 0) + 1));
+  const tags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a] || a.localeCompare(b));
+  $("chips").innerHTML = tags.map(t => `<button type="button" class="chip" data-v="${esc(t)}">${esc(t)}<small>${tagCounts[t]}</small></button>`).join("");
+
+  setupStats();
+
+  $("seg").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    state.audience = b.dataset.v; render();
+  });
+  $("chips").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    state.tag = state.tag === b.dataset.v ? null : b.dataset.v; render();
+  });
+  // Tags on cards filter too, then jump back to the top of the results.
+  $("groups").addEventListener("click", e => {
+    const b = e.target.closest("button[data-tag]"); if (!b) return;
+    state.tag = b.dataset.tag; render();
+    document.querySelector(`#chips [data-v="${CSS.escape(state.tag)}"]`)?.scrollIntoView({ inline: "center", block: "nearest" });
+    $("products").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+  });
+  let qt;
+  $("q").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value.trim().toLowerCase(); render(); }, 120); });
+  $("clear").addEventListener("click", () => { state.audience = "all"; state.tag = null; state.q = ""; $("q").value = ""; render(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "/" && document.activeElement !== $("q")) { e.preventDefault(); $("q").focus(); }
+    if (e.key === "Escape" && document.activeElement === $("q")) { $("q").blur(); }
+  });
+
+  // Cursor-follow glow on cards.
+  $("groups").addEventListener("pointermove", e => {
+    const c = e.target.closest(".card"); if (!c) return;
+    const r = c.getBoundingClientRect();
+    c.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    c.style.setProperty("--my", `${e.clientY - r.top}px`);
+  });
+
+  // Theme toggle (remembered per browser).
+  $("theme").addEventListener("click", () => {
+    const root = document.documentElement;
+    const isDark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = isDark ? "light" : "dark";
+    try { localStorage.setItem("barq-theme", root.dataset.theme); } catch (e) {}
+  });
+
+  // Sticky bar shadow + back-to-top button.
+  const filters = $("filters");
+  const onScroll = () => {
+    filters.classList.toggle("stuck", filters.getBoundingClientRect().top <= 0);
+    $("toTop").classList.toggle("show", scrollY > 900);
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", moveThumb);
+  $("toTop").addEventListener("click", () => scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+  document.fonts?.ready.then(moveThumb);
+
+  // Backup for the scroll reveal: if the observer misses a card (background tab, odd browsers),
+  // reveal anything that is on screen on the next scroll, and everything before printing.
+  let revealQueued = false;
+  const revealVisible = () => {
+    revealQueued = false;
+    document.querySelectorAll(".card:not(.in)").forEach(c => {
+      const r = c.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0) c.classList.add("in");
+    });
+  };
+  addEventListener("scroll", () => { if (!revealQueued) { revealQueued = true; requestAnimationFrame(revealVisible); } }, { passive: true });
+  addEventListener("beforeprint", () => document.querySelectorAll(".card").forEach(c => c.classList.add("in")));
+
+  // If a product logo fails to load, show the initials tile instead.
+  document.addEventListener("error", e => {
+    const img = e.target;
+    if (!(img instanceof HTMLImageElement) || !img.parentElement?.classList.contains("has-logo")) return;
+    const m = img.parentElement;
+    m.classList.remove("has-logo"); m.removeAttribute("style"); m.setAttribute("aria-hidden", "true");
+    m.textContent = m.dataset.initials;
+  }, true);
+
+  // In-page links (#live, #shopify, #internal, #products). Handled in JS so they always work:
+  // the sections are drawn by script, a filter may have hidden the target, and the sticky
+  // filter bar needs an offset.
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const id = a.getAttribute("href").slice(1);
+    if (!id || !$(id)) return;
+    e.preventDefault();
+    goTo(id, true);
+  });
+
+  $("year").textContent = new Date().getFullYear();
+  render();
+  onScroll();
+
+  // Opening built.barq.dev/#shopify lands on that section.
+  const initial = decodeURIComponent(location.hash.slice(1));
+  if (initial && $(initial)) requestAnimationFrame(() => goTo(initial, false));
+}
+
+function goTo(id, smooth) {
+  let el = $(id);
+  // A filtered-out section is hidden; clear filters so the link still lands somewhere real.
+  if (el.hidden || el.closest("[hidden]")) {
+    state.audience = "all"; state.tag = null; state.q = ""; $("q").value = "";
+    render();
+    el = $(id);
+  }
+  const bar = $("filters");
+  // "Explore products" lands on the filter bar itself; section links land just below it.
+  const target = id === "products" ? bar : el;
+  const sticky = id !== "products" && getComputedStyle(bar).position === "sticky" ? bar.offsetHeight : 0;
+  const top = target.getBoundingClientRect().top + scrollY - sticky;
+  scrollTo({ top, behavior: smooth && !reduceMotion ? "smooth" : "auto" });
+  try { history.replaceState(null, "", "#" + id); } catch (err) { /* data:/file: previews may refuse */ }
+}
+setup();
+</script>
+</body>
+</html>
