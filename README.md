@@ -22,14 +22,16 @@ repo also keeps deploys independent: pushing here can never break barq.dev, and 
 
 ### Private repo
 
-The repo is kept **private**. GitHub Pages on a private repo needs a paid plan: **GitHub Team or Enterprise** for the
-BarqDev org. The published site at built.barq.dev is public either way; only the source code stays hidden. Anything
+The repo is kept **private**. GitHub Pages on a private repo needs a paid plan: **GitHub Pro** on a personal account
+(Team or Enterprise for an org). On the free plan GitHub refuses with "Your current plan does not support GitHub Pages
+for this repository", so either upgrade or make the repo public. The published site at built.barq.dev is public either way; only the source code stays hidden. Anything
 confidential stays out of the repo regardless: the product inventory (which names client repos) lives in `INVENTORY.md`,
 which `.gitignore` keeps out.
 
 ### Step 1: the repo
 
-The site lives in **`BarqDev/built-by-barq`** (private). The code is on `main`, with an identical copy on `gh-pages`.
+The site lives in **[`hammadcui20/built-by-barq`](https://github.com/hammadcui20/built-by-barq)** (private, personal account).
+The code is on `main`, with an identical copy on `gh-pages`.
 `INVENTORY.md` is git-ignored and is never pushed (check any time with `git ls-files`).
 
 ### Step 2: turn on Pages
@@ -39,16 +41,16 @@ Repo → **Settings → Pages**
 - **Source:** Deploy from a branch
 - **Branch:** `main` (or `gh-pages`), folder `/ (root)` → **Save**
 
-### Step 3: verify barq.dev for the org (recommended, once per domain)
+### Step 3: verify barq.dev on your account (recommended, once per domain)
 
 This stops anyone else's GitHub repo from claiming a `*.barq.dev` subdomain.
 
-1. BarqDev org → **Settings → Pages → Add a domain** → enter `barq.dev`.
+1. Your profile → **Settings → Pages → Add a domain** → enter `barq.dev`.
 2. GitHub shows a TXT record. Add it in GoDaddy (step 4 shows where). It looks like:
 
    | Type | Name | Value |
    |---|---|---|
-   | TXT | `_github-pages-challenge-BarqDev` | *(the code GitHub gives you)* |
+   | TXT | `_github-pages-challenge-hammadcui20` | *(the code GitHub gives you)* |
 
 3. Click **Verify**. It can take a few minutes for DNS to update.
 
@@ -60,10 +62,11 @@ GoDaddy → **My Products → barq.dev → DNS → Add New Record**:
 
 | Type | Name | Value | TTL |
 |---|---|---|---|
-| CNAME | `built` | `barqdev.github.io` | 1 hour |
+| CNAME | `built` | `hammadcui20.github.io` | 1 hour |
 
-`barqdev.github.io` is the BarqDev org's GitHub Pages address. GitHub uses the repo's `CNAME` file (`built.barq.dev`)
-to route visitors to this repo. Visitors only ever see built.barq.dev. Don't touch the existing `@`, `www`, `meet` or
+`hammadcui20.github.io` is the GitHub Pages address of the account that owns the repo (note the `.github.io`). GitHub uses the repo's `CNAME` file (`built.barq.dev`)
+to route visitors to this repo. Visitors only ever see built.barq.dev. If the repo later moves to the BarqDev org, change
+this value to `barqdev.github.io`; nothing else changes. Don't touch the existing `@`, `www`, `meet` or
 `video-forge` records.
 
 **Alternative with no GitHub account name at all:** instead of the CNAME, add four `A` records named `built`, with values
@@ -83,7 +86,7 @@ Check from a terminal:
 dig +short built.barq.dev
 ```
 
-It should print `barqdev.github.io.` followed by GitHub IPs (`185.199.108-111.153`).
+It should print `hammadcui20.github.io.` followed by GitHub IPs (`185.199.108-111.153`).
 
 ### Updating the site later
 
@@ -94,7 +97,7 @@ Edit `index.html`, then commit and push. GitHub Pages redeploys in about a minut
 | Symptom | Fix |
 |---|---|
 | 404 on built.barq.dev | Pages not enabled, or the `CNAME` file is missing or misspelled in the repo |
-| "Domain's DNS record could not be retrieved" | GoDaddy record not live yet, or it points to the repo URL instead of `barqdev.github.io` |
+| "Domain's DNS record could not be retrieved" | GoDaddy record not live yet, or it points to the repo URL instead of `hammadcui20.github.io` |
 | "Enforce HTTPS" greyed out | Certificate still being issued: wait up to an hour, then remove and re-add the custom domain |
 | Old version still showing | Hard refresh (Cmd+Shift+R); Pages caches for about 10 minutes |
 
